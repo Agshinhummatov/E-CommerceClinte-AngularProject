@@ -19,7 +19,7 @@ const routes: Routes = [
                     .then(module => module.ProductsModule)
             },
             {
-                path: 'order', loadChildren: () => import('./admin/components/orders/orders.module')
+                path: 'orders', loadChildren: () => import('./admin/components/orders/orders.module')
                     .then(module => module.OrdersModule)
             }
         ]
