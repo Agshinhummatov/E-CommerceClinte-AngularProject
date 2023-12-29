@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AdminModule } from './admin/admin.module';
 import { UiModule } from './ui/ui.module';
 import { ToastrModule } from 'ngx-toastr';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { ToastrModule } from 'ngx-toastr';
     AdminModule,
     UiModule,
     ToastrModule.forRoot(),
+    NgxSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

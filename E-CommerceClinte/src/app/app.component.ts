@@ -12,13 +12,9 @@ declare var $: any;
 export class AppComponent {
   title = 'E-CommerceClient';
 
-  constructor(private toasterService : CustomToastrService) {
+  constructor() {
 
-    toasterService.message("merhaba", "başlık", {
-      messageType : ToastrMessageType.Success,
-      position : ToastrPosition.TopCenter,
    
-    });
    }
 
 }
