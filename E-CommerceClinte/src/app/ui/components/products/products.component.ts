@@ -9,6 +9,8 @@ import { NgxSpinnerService } from 'ngx-spinner';
   templateUrl: './products.component.html',
   styleUrl: './products.component.css'
 })
+
+
 export class ProductsComponent  extends  BaseComponent implements OnInit{
 
   constructor(spinner: NgxSpinnerService) { 
