@@ -16,7 +16,7 @@ export class AlertifyService {
    
     alertify.set('notifier','position', opptions.position);
     const msj = alertify[opptions.messageType](message);
-    if(opptions.dismissable){
+    if(opptions.dismissOthers){
       msj.dismissOthers();
     }
     
@@ -32,7 +32,7 @@ export class AlertifyOptions{
   messageType : MessageType = MessageType.Message;
   position : Position = Position.TopCenter;
   dealy : number = 3;
-  dismissable : boolean = false;
+  dismissOthers : boolean = false;
 
 }
 
