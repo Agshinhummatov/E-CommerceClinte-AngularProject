@@ -29,7 +29,7 @@ export class DashboardsComponent extends BaseComponent implements OnInit {
     this.alertify.message("merhaba", {
       messageType : MessageType.Message,
       position : Position.BottomCenter,
-      dealy : 3,
+      delay : 3,
      
     });
    
