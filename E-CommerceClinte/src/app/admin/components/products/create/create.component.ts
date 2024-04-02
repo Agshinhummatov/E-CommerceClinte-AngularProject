@@ -17,9 +17,9 @@ import { AlertifyService, MessageType, Position } from '../../../../services/adm
 export class CreateComponent extends BaseComponent implements OnInit {
 
 
-  constructor(spiner: NgxSpinnerService, private productService: ProductService, private alertify: AlertifyService) {
+  constructor(spinner: NgxSpinnerService, private productService: ProductService, private alertify: AlertifyService) {
 
-    super(spiner);
+    super(spinner);
 
 
   }
@@ -34,32 +34,7 @@ export class CreateComponent extends BaseComponent implements OnInit {
     create_prodcut.price = parseFloat(price.value);
     create_prodcut.stock = parseInt(stock.value);
 
-    if (!name.value) {
-      this.alertify.message("Lütfen ürün adını giriniz!", {
-        dismissOthers: true,
-        messageType: MessageType.Error,
-        position: Position.TopRight
-      });
-      return;
-    }
-
-    if (parseInt(stock.value) < 0) {
-      this.alertify.message("Lütfen stok bilgisini doğru giriniz!", {
-        dismissOthers: true,
-        messageType: MessageType.Error,
-        position: Position.TopRight
-      });
-      return;
-    }
-
-    if (parseInt(price.value) < 0) {
-      this.alertify.message("Lütfen price bilgisini doğru giriniz!", {
-        dismissOthers: true,
-        messageType: MessageType.Error,
-        position: Position.TopRight
-      });
-      return;
-    }
+   
 
     //   () => bu methodum menden ProductService classinda create methoduna gonderilir ve orda subscribe methodu  icindeki  succsesCallBack(); kimi qebul edir onu any methodur bir callback gondermisik icine
     this.productService.create(create_prodcut, () => {
