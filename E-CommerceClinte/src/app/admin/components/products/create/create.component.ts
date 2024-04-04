@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ProductService } from '../../../../services/common/models/product.service';
 import { Create_Product } from '../../../../contracts/create_product';
 import { BaseComponent, SpinnerType } from '../../../../base/base.component';
@@ -26,6 +26,9 @@ export class CreateComponent extends BaseComponent implements OnInit {
   ngOnInit(): void {
 
   }
+
+  @Output() createdProduct : EventEmitter<Create_Product> = new EventEmitter();
+  
   create(name: HTMLInputElement, price: HTMLInputElement, stock: HTMLInputElement) {
 
     this.showSpinner(SpinnerType.ballAtom)
@@ -33,9 +36,6 @@ export class CreateComponent extends BaseComponent implements OnInit {
     create_prodcut.name = name.value;
     create_prodcut.price = parseFloat(price.value);
     create_prodcut.stock = parseInt(stock.value);
-
-   
-
     //   () => bu methodum menden ProductService classinda create methoduna gonderilir ve orda subscribe methodu  icindeki  succsesCallBack(); kimi qebul edir onu any methodur bir callback gondermisik icine
     this.productService.create(create_prodcut, () => {
       this.hideSpinner(SpinnerType.ballAtom)
@@ -44,7 +44,7 @@ export class CreateComponent extends BaseComponent implements OnInit {
         messageType: MessageType.Success,
         position: Position.TopRight,
       });
-
+    this.createdProduct.emit(create_prodcut);
     }, errorMessage => {
       this.alertify.message(errorMessage,
         {
