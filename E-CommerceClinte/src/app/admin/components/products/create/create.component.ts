@@ -10,7 +10,6 @@ import { AlertifyService, MessageType, Position } from '../../../../services/adm
 
 @Component({
   selector: 'app-create',
-
   templateUrl: './create.component.html',
   styleUrl: './create.component.css'
 })
