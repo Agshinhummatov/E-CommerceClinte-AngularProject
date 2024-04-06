@@ -26,8 +26,8 @@ export class CreateComponent extends BaseComponent implements OnInit {
 
   }
 
-  @Output() createdProduct : EventEmitter<Create_Product> = new EventEmitter();
-  
+  @Output() createdProduct: EventEmitter<Create_Product> = new EventEmitter();
+
   create(name: HTMLInputElement, price: HTMLInputElement, stock: HTMLInputElement) {
 
     this.showSpinner(SpinnerType.ballAtom)
@@ -43,7 +43,7 @@ export class CreateComponent extends BaseComponent implements OnInit {
         messageType: MessageType.Success,
         position: Position.TopRight,
       });
-    this.createdProduct.emit(create_prodcut);
+      this.createdProduct.emit(create_prodcut);
     }, errorMessage => {
       this.alertify.message(errorMessage,
         {
@@ -53,7 +53,7 @@ export class CreateComponent extends BaseComponent implements OnInit {
         });
 
 
-      });
+    });
 
-    }
+  }
 }
