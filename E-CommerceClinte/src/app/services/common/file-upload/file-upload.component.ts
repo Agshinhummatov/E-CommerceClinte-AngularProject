@@ -4,6 +4,8 @@ import { HttpClientService } from '../http-client.service';
 import { HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { AlertifyService, MessageType, Position } from '../../admin/alertify.service';
 import { CustomToastrService, ToastrMessageType, ToastrPosition } from '../../ui/custom-toastr.service';
+import { MatDialog } from '@angular/material/dialog';
+import { FileUploadDialogState } from '../../../dialogs/file-upload-dialog/file-upload-dialog.component';
 
 
 @Component({
@@ -18,7 +20,8 @@ export class FileUploadComponent {
   constructor(
     private httpClientService: HttpClientService,
     private alertfiyService: AlertifyService,
-    private customToastrService: CustomToastrService
+    private customToastrService: CustomToastrService,
+    private dialog: MatDialog
     ){
   }
 
@@ -83,8 +86,21 @@ export class FileUploadComponent {
   }
   
   
+  openDialog(affterClosed: any): void {
+
+    const dialogRef = this.dialog.open(FileUploadComponent, {
+      data: FileUploadDialogState.yes,
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === FileUploadDialogState.yes)
+        affterClosed();
+    });
+  }
+  
 
 }
+
 
 
 export class FileUploadOptions{

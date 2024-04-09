@@ -32,7 +32,7 @@ export class CreateComponent extends BaseComponent implements OnInit {
   @Output() createdProduct: EventEmitter<Create_Product> = new EventEmitter();
 
   @Output() fileUploadOptions : Partial<FileUploadOptions> ={
-    action : "upload",
+    action : "action",
     controller : "products",
     explanation : "Drag or select images to upload",
      isAdminPage : true,
