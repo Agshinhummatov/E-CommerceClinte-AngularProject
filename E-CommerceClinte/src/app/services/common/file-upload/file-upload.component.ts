@@ -7,6 +7,8 @@ import { CustomToastrService, ToastrMessageType, ToastrPosition } from '../../ui
 import { MatDialog } from '@angular/material/dialog';
 import { FileUploadDialogComponent, FileUploadDialogState } from '../../../dialogs/file-upload-dialog/file-upload-dialog.component';
 import { DialogService } from '../dialog.service';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { SpinnerType } from '../../../base/base.component';
 
 
 @Component({
@@ -23,7 +25,8 @@ export class FileUploadComponent {
     private alertfiyService: AlertifyService,
     private customToastrService: CustomToastrService,
     private dialog: MatDialog,
-    private dialogService: DialogService
+    private dialogService: DialogService,
+    private spinner : NgxSpinnerService
   ) {
   }
 
@@ -49,6 +52,8 @@ export class FileUploadComponent {
       componentType: FileUploadDialogComponent,
       data: FileUploadDialogState.Yes,
       afterClosed: () => {
+        this.spinner.show(SpinnerType.ballAtom)
+
         this.httpClientService.post({
           controller: this.options.controller,
           action: this.options.action,
@@ -56,7 +61,7 @@ export class FileUploadComponent {
           headers: new HttpHeaders({ "responseType": "blob" })
         }, fileData).subscribe(data => {
           const message: string = "Files uploaded successfully.";
-
+          this.spinner.hide(SpinnerType.ballAtom)
           if (this.options.isAdminPage) {
             this.alertfiyService.message(message,
               {
@@ -69,8 +74,10 @@ export class FileUploadComponent {
               messageType: ToastrMessageType.Success,
               position: ToastrPosition.TopRight
             })
-          }
+          }  
         }, (errorResponse: HttpErrorResponse) => {
+
+          this.spinner.hide(SpinnerType.ballAtom)
           const message: string = "An unexpected error was encountered while uploading files";
 
           if (this.options.isAdminPage) {
@@ -86,7 +93,7 @@ export class FileUploadComponent {
               position: ToastrPosition.TopRight
             })
           }
-
+          
         });
       }
     });
