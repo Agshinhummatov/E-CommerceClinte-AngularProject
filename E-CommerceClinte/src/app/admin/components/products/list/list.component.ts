@@ -6,6 +6,8 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseComponent, SpinnerType } from '../../../../base/base.component';
 import { AlertifyService, MessageType, Position } from '../../../../services/admin/alertify.service';
 import { MatPaginator } from '@angular/material/paginator';
+import { DialogService } from '../../../../services/common/dialog.service';
+import { SelectProductImageDialogComponent } from '../../../../dialogs/select-product-image-dialog/select-product-image-dialog.component';
 
 
 
@@ -17,7 +19,10 @@ import { MatPaginator } from '@angular/material/paginator';
 })
 export class ListComponent extends BaseComponent implements OnInit {
 
-  constructor(spinner: NgxSpinnerService, private productService: ProductService, private alertify: AlertifyService) {
+  constructor(spinner: NgxSpinnerService,
+    private productService: ProductService,
+    private alertify: AlertifyService,
+    private dialogService: DialogService,) {
 
     super(spinner);
 
@@ -25,7 +30,7 @@ export class ListComponent extends BaseComponent implements OnInit {
 
 
 
-  displayedColumns: string[] = ['name', 'price', 'stock', 'createdDate', 'updatedDate', 'edit', 'delete'];
+  displayedColumns: string[] = ['name', 'price', 'stock', 'createdDate', 'updatedDate', 'photos', 'edit', 'delete'];
 
   dataSource: MatTableDataSource<List_Product> = null;
 
@@ -48,13 +53,20 @@ export class ListComponent extends BaseComponent implements OnInit {
 
 
   }
- 
-  // delete(id , event){
-  //   const img : HTMLImageElement = event.srcElement
-  //   $(img.parentElement.parentElement).fadeOut(2000)
 
-   
-  // }
+
+  addProductImages(id: string) {
+    this.dialogService.openDialog({
+     componentType: SelectProductImageDialogComponent,
+     data: id,
+     options:{
+      width: "1300px"
+     }
+     
+
+    })
+
+  }
 
   async pageChanged() {
 
@@ -74,9 +86,3 @@ export class ListComponent extends BaseComponent implements OnInit {
 
 
 
-// p.Id,
-// p.Name,
-// p.Price,
-// p.Stock,
-// p.CreatedDate,
-// p.UpdatedDate
