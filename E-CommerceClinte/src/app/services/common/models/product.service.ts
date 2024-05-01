@@ -56,7 +56,7 @@ export class ProductService { HtppClientService
     await firstValueFrom(deleteObservable);
   }
 
-  async readImage(id: string,successCallBack?: ()=> void): Promise<List_Product_Image[]> {
+  async readImages(id: string,successCallBack?: ()=> void): Promise<List_Product_Image[]> {
    const getObservable : Observable<List_Product_Image[]>= this.httpClientService.get<List_Product_Image[]>({
       
      

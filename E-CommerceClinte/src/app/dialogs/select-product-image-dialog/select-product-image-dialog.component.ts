@@ -9,7 +9,7 @@ import { SpinnerType } from '../../base/base.component';
 import { DialogService } from '../../services/common/dialog.service';
 import { DeleteDialogComponent, DeleteState } from '../delete-dialog/delete-dialog.component';
 
-declare var $ : any;
+declare var $: any;
 
 @Component({
   selector: 'app-select-product-image-dialog',
@@ -48,8 +48,7 @@ export class SelectProductImageDialogComponent extends BaseDialog<SelectProductI
 
   async ngOnInit() {
     this.spinner.show(SpinnerType.ballAtom);
-    this.images = await this.productService.readImage(this.data as string,
-      () => this.spinner.hide(SpinnerType.ballAtom));
+    this.images = await this.productService.readImages(this.data as string, () => this.spinner.hide(SpinnerType.ballAtom));
   }
 
   async deleteImage(imageId: string, event: any) {
@@ -61,9 +60,10 @@ export class SelectProductImageDialogComponent extends BaseDialog<SelectProductI
         this.spinner.show(SpinnerType.ballAtom)
         await this.productService.deleteImage(this.data as string, imageId, () => {
           this.spinner.hide(SpinnerType.ballAtom);
-          var card = $(event.srcElement).parent().parent();
-          debugger;
-          card.fadeOut(500);
+          var card = $(event.srcElement).closest('.product-image-card');
+          card.fadeOut(500, () => {
+            card.remove(); // Kartı DOM'dan kaldır
+          });
         });
       }
     })
