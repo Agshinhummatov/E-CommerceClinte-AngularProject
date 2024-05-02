@@ -10,9 +10,9 @@
                 <div class="row mb-3">
                     <label for="inputName" class="col-sm-6 col-form-label">Name and Surname *</label>
                     <div class="col-sm-10">
-                        <input type="text"  formControlName="nameAndSurname" class="form-control" [ngClass]="{'is-invalid' : submitted && componet.nameAndSurname.errors}" id="inputName" placeholder="name and surname">
-                        <small  id="inputName" class="form-text text-muted in-valid-feedback" *ngIf="submitted && componet.nameAndSurname.errors?.required">Please do not leave your name and surname blank.</small>
-                        <small  id="inputName" class="form-text text-muted in-valid-feedback" *ngIf="submitted && (componet.nameAndSurname.errors?.minlength || componet.nameAndSurname.errors?.maxlength)">Please enter between 3 and 50 characters</small>
+                        <input type="text"  formControlName="nameSurname" class="form-control" [ngClass]="{'is-invalid' : submitted && componet.nameSurname.errors}" id="inputName" placeholder="name and surname">
+                        <small  id="inputName" class="form-text text-muted in-valid-feedback" *ngIf="submitted && componet.nameSurname.errors?.required">Please do not leave your name and surname blank.</small>
+                        <small  id="inputName" class="form-text text-muted in-valid-feedback" *ngIf="submitted && (componet.nameSurname.errors?.minlength || componet.nameSurname.errors?.maxlength)">Please enter between 3 and 50 characters</small>
                     </div>
                 </div>
 
@@ -20,8 +20,8 @@
                 <div class="row mb-3">
                     <label for="inputUserName" class="col-sm-6 col-form-label">User name *</label>
                     <div class="col-sm-10">
-                        <input type="text" formControlName="userName" class="form-control in-valid-feedback" [ngClass]="{'is-invalid' : submitted && componet.userName.errors}" id="inputUserName" placeholder="user name">
-                        <small  id="inputName" class="form-text text-muted in-valid-feedback" *ngIf="submitted && componet.userName.errors?.required">Please do not leave your user name blank.</small>
+                        <input type="text" formControlName="username" class="form-control in-valid-feedback" [ngClass]="{'is-invalid' : submitted && componet.username.errors}" id="inputUserName" placeholder="user name">
+                        <small  id="inputName" class="form-text text-muted in-valid-feedback" *ngIf="submitted && componet.username.errors?.required">Please do not leave your user name blank.</small>
                     </div>
                 </div>
 
@@ -43,10 +43,10 @@
                 </div>
 
                 <div class="row mb-3">
-                    <label for="inputPasswordCheck" class="col-sm-6 col-form-label">Check Password *</label>
+                    <label for="inputPasswordConfirm" class="col-sm-6 col-form-label">Check Password *</label>
                     <div class="col-sm-10">
-                        <input type="password" formControlName="checkPassword" [ngClass]="{'is-invalid' : submitted && componet.checkPassword.errors}" class="form-control" id="PasswordCheck">
-                        <small *ngIf="submitted && frm.hasError('notSame')">please verify your password</small>
+                        <input type="password" formControlName="passwordConfirm" [ngClass]="{'is-invalid' : submitted && componet.passwordConfirm.errors}" class="form-control" id="inputPasswordConfirm">
+                        <small id="inputPasswordConfirm" *ngIf="submitted && frm.hasError('notSame')">please verify your password</small>
                     </div>
                 </div>
 
