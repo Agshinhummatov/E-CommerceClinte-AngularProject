@@ -5,16 +5,18 @@ import { User } from '../../../entities/user';
 import { UserService } from '../../../services/common/models/user.service';
 import { Create_Users } from '../../../contracts/users/create_users';
 import { CustomToastrService, ToastrMessageType, ToastrPosition } from '../../../services/ui/custom-toastr.service';
+import { BaseComponent } from '../../../base/base.component';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent extends BaseComponent implements OnInit {
 
-  constructor(private formBuilder: FormBuilder, private userServices: UserService, private toastrService: CustomToastrService) {
-
+  constructor(private formBuilder: FormBuilder, private userService: UserService, private toastrService: CustomToastrService, spinner: NgxSpinnerService) {
+    super(spinner)
   }
 
 
@@ -50,7 +52,7 @@ export class RegisterComponent implements OnInit {
     if (this.frm.invalid)
       return;
 
-    const result: Create_Users = await this.userServices.create(user);
+    const result: Create_Users = await this.userService.create(user);
     if (result.succeeded)
       this.toastrService.message(result.message, "User registration successful",{
         messageType: ToastrMessageType.Success,
