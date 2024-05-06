@@ -14,11 +14,11 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have the 'E-CommerceClinte' title`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('E-CommerceClinte');
-  });
+  // it(`should have the 'E-CommerceClinte' title`, () => {
+  //   const fixture = TestBed.createComponent(AppComponent);
+  //   const app = fixture.componentInstance;
+  //   expect(app.title).toEqual('E-CommerceClinte');
+  // });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);

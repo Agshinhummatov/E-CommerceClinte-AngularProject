@@ -15,6 +15,6 @@ export class CustomersComponent extends BaseComponent implements OnInit  {
   }
 
   ngOnInit(): void {
-    this.showSpinner(SpinnerType.ballAtom);
+    // this.showSpinner(SpinnerType.ballAtom);
   }
 }

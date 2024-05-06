@@ -27,13 +27,21 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="navbar-brand" routerLink="register">Register</a>
+                                <a class="navbar-brand" routerLink="register" *ngIf="!authService.isAtuhenticated">Register</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="navbar-brand" routerLink="login">Login</a>
+                                <a class="navbar-brand" routerLink="login" *ngIf="!authService.isAtuhenticated">Login</a>
                             </li>
-                            <li class="nav-item dropdown">
+
+                            <li class="nav-item">
+                                <a class="navbar-brand" style="color:red; cursor: pointer;" (click)="siginOut()" *ngIf="authService.isAtuhenticated">Logout</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a routerLink="admin" class="btn btn-outline-success" *ngIf="authService.isAtuhenticated">Admin</a>
+                            </li>
+                            <!-- <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                                     aria-expanded="false">
                                     Dropdown
@@ -49,16 +57,14 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-                            </li>
+                            </li> -->
 
-                            <li class="nav-item">
-                                <a routerLink="admin" class="btn btn-outline-success">Admin</a>
-                            </li>
+                           
                         </ul>
-                        <form class="d-flex" role="search">
+                        <!-- <form class="d-flex" role="search">
                             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                             <button class="btn btn-outline-success" type="submit">Search</button>
-                        </form>
+                        </form> -->
                     </div>
                 </div>
             </nav>
