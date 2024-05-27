@@ -55,7 +55,7 @@ export class HttpClientService {
         url = requestParameters.fullEndPoint;
     else
     //   (/ sildim buna gore delete isemeye biler yoxlayarsn)
-        url = `${this.url(requestParameters)}/${id}${requestParameters.queryString ? `?${requestParameters.queryString}` :""}`;
+        url = `${this.url(requestParameters)}${id}${requestParameters.queryString ? `?${requestParameters.queryString}` :""}`;
 
     return this.httpClient.delete<T>(url, { headers: requestParameters.headers });
 }

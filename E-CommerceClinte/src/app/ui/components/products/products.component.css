@@ -1,0 +1,5 @@
+.container {
+    max-width: 1440px; /* veya istediğiniz genişlikte bir değer */
+    margin: 0 auto; /* sayfayı ortalamak için */
+    /* veya diğer özelleştirmeler */
+}
