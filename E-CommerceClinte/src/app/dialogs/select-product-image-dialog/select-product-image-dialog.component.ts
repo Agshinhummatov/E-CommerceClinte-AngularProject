@@ -73,9 +73,9 @@ export class SelectProductImageDialogComponent extends BaseDialog<SelectProductI
   showCase(imageId: string) {
     this.spinner.show(SpinnerType.ballAtom);
 
-    // this.productService.changeShowcaseImage(imageId, this.data as string, () => {
-    //   this.spinner.hide(SpinnerType.BallAtom);
-    // });
+    this.productService.changeShowcaseImage(imageId, this.data as string, () => {
+      this.spinner.hide(SpinnerType.ballAtom);
+    });
   }
 
 }
