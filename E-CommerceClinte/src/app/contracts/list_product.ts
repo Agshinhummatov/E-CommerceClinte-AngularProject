@@ -7,6 +7,6 @@ export class List_Product {
     stock: number;
     createdDate: Date;
     updatedDate: Date;
-    productImagesFile?: List_Product_Image[];
+    productImageFiles?: List_Product_Image[];
     imagePath: string;
 }

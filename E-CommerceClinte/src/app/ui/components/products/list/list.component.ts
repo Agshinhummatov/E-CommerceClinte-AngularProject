@@ -4,6 +4,11 @@ import { List_Product } from '../../../../contracts/list_product';
 import { ActivatedRoute } from '@angular/router';
 import { FileService } from '../../../../services/common/models/file.service';
 import { BaseUrl } from '../../../../contracts/base_url';
+import { BasketService } from '../../../../services/common/models/basket.service';
+import { BaseComponent, SpinnerType } from '../../../../base/base.component';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { Create_Basket_Item } from '../../../../contracts/baskets/create_basket_item';
+import { CustomToastrService, ToastrMessageType, ToastrPosition } from '../../../../services/ui/custom-toastr.service';
 
 
 @Component({
@@ -11,9 +16,18 @@ import { BaseUrl } from '../../../../contracts/base_url';
   templateUrl: './list.component.html',
   styleUrl: './list.component.css'
 })
-export class ListComponent implements OnInit {
+export class ListComponent extends BaseComponent implements OnInit {
 
-  constructor(private productService: ProductService, private activatedRoute: ActivatedRoute, private fileService: FileService) { }
+  constructor(private productService: ProductService,
+     private activatedRoute: ActivatedRoute,
+      private fileService: FileService,
+      private basketsService: BasketService,
+      spinner : NgxSpinnerService,
+      private customToastrService : CustomToastrService
+      ){ 
+    super(spinner);
+
+      }
 
   currentPageNo: number;
   totalProductCount: number;
@@ -44,12 +58,12 @@ export class ListComponent implements OnInit {
         const listProduct: List_Product = {
           id: p.id,
           createdDate: p.createdDate,
-          imagePath: p.productImagesFile.length ? p.productImagesFile.find(p => p.showcase).path : "",
+          imagePath: p.productImageFiles.length ? p.productImageFiles.find(p => p.showcase).path : "",
           name: p.name,
           price: p.price,
           stock: p.stock,
           updatedDate: p.updatedDate,
-          productImagesFile: p.productImagesFile
+          productImageFiles: p.productImageFiles
         };
 
         return listProduct;
@@ -75,5 +89,20 @@ export class ListComponent implements OnInit {
 
   }
 
+ async addToBasket(product: List_Product){
+
+  this.showSpinner(SpinnerType.ballAtom);
+    let _basketItem : Create_Basket_Item = new Create_Basket_Item();
+    _basketItem.productId = product.id;
+    _basketItem.quantity = 1;
+
+   await  this.basketsService.add(_basketItem)
+   this.hideSpinner(SpinnerType.ballAtom)
+   this.customToastrService.message("Ürün sepete eklendi","Başarılı", {
+    messageType : ToastrMessageType.Success,
+       position : ToastrPosition.TopRight
+       
+   });
+  }
 
 }
