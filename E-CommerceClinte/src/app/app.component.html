@@ -3,7 +3,7 @@
     <div class="row">
 
 
-        
+
 
         <div class="col-md-12">
             <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -27,19 +27,23 @@
                             </li> -->
 
                             <li class="nav-item">
-                                <a class="navbar-brand" routerLink="register" *ngIf="!authService.isAtuhenticated">Register</a>
+                                <a class="navbar-brand" routerLink="register"
+                                    *ngIf="!authService.isAtuhenticated">Register</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="navbar-brand" routerLink="login" *ngIf="!authService.isAtuhenticated">Login</a>
+                                <a class="navbar-brand" routerLink="login"
+                                    *ngIf="!authService.isAtuhenticated">Login</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="navbar-brand" style="color:red; cursor: pointer;" (click)="siginOut()" *ngIf="authService.isAtuhenticated">Logout</a>
+                                <a class="navbar-brand" style="color:red; cursor: pointer;" (click)="siginOut()"
+                                    *ngIf="authService.isAtuhenticated">Logout</a>
                             </li>
 
                             <li class="nav-item">
-                                <a routerLink="admin" class="btn btn-outline-success" *ngIf="authService.isAtuhenticated">Admin</a>
+                                <a routerLink="admin" class="btn btn-outline-success"
+                                    *ngIf="authService.isAtuhenticated">Admin</a>
                             </li>
                             <!-- <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -59,21 +63,22 @@
                                 <a class="nav-link disabled" aria-disabled="true">Disabled</a>
                             </li> -->
 
-                           
+
                         </ul>
                         <!-- <form class="d-flex" role="search">
                             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                             <button class="btn btn-outline-success" type="submit">Search</button>
                         </form> -->
                         <div class="d-flex">
-                            <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModal" type="submit">Basket</button>
+                            <button class="btn btn-outline-success" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal" (click)="loadComponent()" type="submit">Basket</button>
                         </div>
                     </div>
                 </div>
             </nav>
         </div>
 
-       
+
 
     </div>
 </div>
@@ -85,7 +90,7 @@
     <div class="row">
 
 
-        
+
 
         <div class="col-md-12">
             <router-outlet>
@@ -93,7 +98,7 @@
             </router-outlet>
         </div>
 
-       
+
 
     </div>
 </div>
@@ -102,4 +107,9 @@
 <ngx-spinner size="default" name="s2" type="ball-scale-multiple"></ngx-spinner>
 <ngx-spinner size="default" name="s3" type="ball-spin-clockwise-fade-rotating"></ngx-spinner>
 
-<app-baskets></app-baskets>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+      <ng-template appDynamicLoadComponent></ng-template>
+    </div>
+  </div>
