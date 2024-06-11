@@ -16,34 +16,37 @@ export class HttpClientService {
       `${requestParameters.action}` : ""}`;
 
   }
-  get<T>(requestParameters: Partial<RequestParameters> , id?: string) :Observable<T> {
+  get<T>(requestParameters: Partial<RequestParameters>, id?: string): Observable<T> {
 
     let url: string = "";
     if (requestParameters.fullEndPoint)
       url = requestParameters.fullEndPoint;
-    else
-     //   (/ sildim buna gore delete isemeye biler yoxlayarsn)
-      url = `${this.url(requestParameters)}${id ? `/${id}` : ""}${requestParameters.queryString ? `?${requestParameters.queryString}` :""}`;
-
-      return this.httpClient.get<T>(url, { headers: requestParameters.headers });
+    else{
+      //   (/ sildim buna gore delete isemeye biler yoxlayarsn)
+       // Bir action belirtilmişse ve id varsa slash'ı koşullu olarak ekleyin
+      //  url = `${this.url(requestParameters)}${id ? `${id}` : ""}${requestParameters.queryString ? `?${requestParameters.queryString}` : ""}`;
+      const idSegment = id ? `${requestParameters.action ? '/' : ''}${id}` : "";
+      url = `${this.url(requestParameters)}${idSegment}${requestParameters.queryString ? `?${requestParameters.queryString}` : ""}`;
+    }
+    return this.httpClient.get<T>(url, { headers: requestParameters.headers });
   }
-  post<T>(requestParameters: Partial<RequestParameters> , body : Partial<T>) :Observable<T>  {
+  post<T>(requestParameters: Partial<RequestParameters>, body: Partial<T>): Observable<T> {
     let url: string = "";
     if (requestParameters.fullEndPoint)
       url = requestParameters.fullEndPoint;
     else
-      url = `${this.url(requestParameters)}${requestParameters.queryString ? `?${requestParameters.queryString}` :""}`;
+      url = `${this.url(requestParameters)}${requestParameters.queryString ? `?${requestParameters.queryString}` : ""}`;
 
     return this.httpClient.post<T>(url, body, { headers: requestParameters.headers });
 
   }
-  put<T>(requestParameters: Partial<RequestParameters> , body : Partial<T>) :Observable<T> {
+  put<T>(requestParameters: Partial<RequestParameters>, body: Partial<T>): Observable<T> {
 
     let url: string = "";
     if (requestParameters.fullEndPoint)
       url = requestParameters.fullEndPoint;
     else
-      url = `${this.url(requestParameters)}${requestParameters.queryString ? `?${requestParameters.queryString}` :""}`;
+      url = `${this.url(requestParameters)}${requestParameters.queryString ? `?${requestParameters.queryString}` : ""}`;
 
     return this.httpClient.put<T>(url, body, { headers: requestParameters.headers });
 
@@ -52,13 +55,14 @@ export class HttpClientService {
   delete<T>(requestParameters: Partial<RequestParameters>, id: string): Observable<T> {
     let url: string = "";
     if (requestParameters.fullEndPoint)
-        url = requestParameters.fullEndPoint;
-    else
-    //   (/ sildim buna gore delete isemeye biler yoxlayarsn)
-        url = `${this.url(requestParameters)}${id}${requestParameters.queryString ? `?${requestParameters.queryString}` :""}`;
-
+      url = requestParameters.fullEndPoint;
+    else{
+      //   (/ sildim buna gore delete isemeye biler yoxlayarsn)
+      const idSegment = id ? `${requestParameters.action ? '/' : ''}${id}` : "";
+      url = `${this.url(requestParameters)}${idSegment}${requestParameters.queryString ? `?${requestParameters.queryString}` : ""}`;
+  }
     return this.httpClient.delete<T>(url, { headers: requestParameters.headers });
-}
+  }
 
 
 }
@@ -68,7 +72,7 @@ export class RequestParameters {
   controller?: string;
   action?: string;
   // parameters?: any;
-  queryString : string;
+  queryString: string;
   headers?: HttpHeaders;
   baseUrl?: string;
   fullEndPoint?: string;

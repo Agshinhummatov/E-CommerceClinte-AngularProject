@@ -10,6 +10,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { SelectProductImageDialogComponent } from '../../../../dialogs/select-product-image-dialog/select-product-image-dialog.component';
 import { List_Order } from '../../../../contracts/order/list_order';
 import { OrderService } from '../../../../services/common/models/order.service';
+import { OrderDetailDialogComponent, OrderDetailDialogState } from '../../../../dialogs/order-detail-dialog/order-detail-dialog.component';
 
 
 @Component({
@@ -31,7 +32,7 @@ export class ListComponent extends BaseComponent implements OnInit {
 
 
 
-  displayedColumns: string[] = ['orderCode', 'userName','totalPrice', 'createdDate','delete'];
+  displayedColumns: string[] = ['orderCode', 'userName','totalPrice', 'createdDate','viewdetail','delete'];
 
   dataSource: MatTableDataSource<List_Order> = null;
 
@@ -66,4 +67,14 @@ export class ListComponent extends BaseComponent implements OnInit {
 
   }
 
+
+  showDetail(id : string){
+  this.dialogService.openDialog({
+    componentType : OrderDetailDialogComponent,
+    data : id,
+    options:{
+      width: '1200px',
+    }
+  })
+  }
 }
