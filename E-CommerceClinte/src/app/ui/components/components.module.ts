@@ -5,6 +5,8 @@ import { HomeModule } from './home/home.module';
 import { BasketsModule } from './baskets/baskets.module';
 import { RegisterModule } from './register/register.module';
 import { LoginModule } from './login/login.module';
+import { UpdatePasswordModule } from './update-password/update-password.module';
+import { PasswordResetModule } from './password-reset/password-reset.module';
 
 
 
@@ -18,6 +20,8 @@ import { LoginModule } from './login/login.module';
     BasketsModule,
     RegisterModule,
     // LoginModule
+    UpdatePasswordModule,
+    PasswordResetModule
 
   ],
   exports:[BasketsModule]
