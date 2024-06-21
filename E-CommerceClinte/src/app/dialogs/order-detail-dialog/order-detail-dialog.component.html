@@ -72,6 +72,6 @@
 
   <mat-dialog-actions align="end">
     <button mat-button mat-dialog-close>Cancel</button>
-    <button mat-button color="warn" [mat-dialog-close]="data" cdkFocusInitial>complete the order</button>
+    <button mat-button style="background-color: rgb(3, 204, 171);" [mat-dialog-close]="data" cdkFocusInitial (click)="completeOrder()" *ngIf="!singleOrder.completed">Complete the order</button>
 </mat-dialog-actions>
 </div>

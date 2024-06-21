@@ -1,0 +1,10 @@
+<h2 mat-dialog-title>Siparis tamamlamak</h2>
+<mat-dialog-content>
+  <p>
+    Sipasiris tamamlama ya emin misiniz ?</p>
+ 
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="close()">No</button>
+  <button mat-button style="background-color: green;" [mat-dialog-close]="data" cdkFocusInitial (click)="complate()">Yes</button>
+</mat-dialog-actions>
