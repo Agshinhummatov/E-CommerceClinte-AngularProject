@@ -1,0 +1,12 @@
+table {
+    width: 100%;
+    height: 100%;
+  }
+
+  
+
+  .admin_edit{
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+  }

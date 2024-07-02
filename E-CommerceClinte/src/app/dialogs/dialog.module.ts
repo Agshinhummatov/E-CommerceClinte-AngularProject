@@ -36,7 +36,7 @@ import {MatBadgeModule} from '@angular/material/badge';
     FormsModule,
     MatTableModule,
     MatToolbarModule,
-    MatBadgeModule
+    MatBadgeModule,
   ]
 })
 export class DialogModule { }
