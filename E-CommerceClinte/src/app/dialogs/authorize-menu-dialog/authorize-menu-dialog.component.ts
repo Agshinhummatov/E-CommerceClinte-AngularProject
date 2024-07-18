@@ -15,16 +15,30 @@ import { SpinnerType } from '../../base/base.component';
 })
 export class AuthorizeMenuDialogComponent extends BaseDialog<AuthorizeMenuDialogComponent>  implements OnInit {
   constructor(dialogRef: MatDialogRef<AuthorizeMenuDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any, private rolesService : RoleService,
-    private authorizationEndpointService: AuthorizationEndpointService, private spinner: NgxSpinnerService) {
+    @Inject(MAT_DIALOG_DATA) public data: any, 
+    private roleService : RoleService,
+    private authorizationEndpointService: AuthorizationEndpointService,
+     private spinner: NgxSpinnerService) {
     super(dialogRef)
   }
 
   roles: { datas: List_Role[], totalCount: number};
 
+  assignedRoles: Array<string>;
+  listRoles: { name: string, selected: boolean }[];
+
   async ngOnInit(){
-   
-    this.roles = await this.rolesService.getRoles(-1,-1);
+   this.assignedRoles = await this.authorizationEndpointService.getRolesToEndpoint(this.data.code, this.data.menuName);
+
+   this.roles = await this.roleService.getRoles(-1, -1);
+
+   this.listRoles = this.roles.datas.map((r: any) => {
+     return {
+       name: r.name,
+       selected: this.assignedRoles?.indexOf(r.name) > -1
+     }
+   });
+
   }
 
   
@@ -36,13 +50,15 @@ export class AuthorizeMenuDialogComponent extends BaseDialog<AuthorizeMenuDialog
       () => {
         this.spinner.hide(SpinnerType.ballAtom);
       }, error => {
-
+        this.spinner.hide(SpinnerType.ballAtom); 
       })
       
   }
 
   
 }
+
+
 
 export enum AuthorizeMenuState {
   Yes,
