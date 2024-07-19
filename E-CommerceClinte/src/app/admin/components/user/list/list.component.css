@@ -1,0 +1,9 @@
+table {
+    width: 100%;
+  }
+
+  .admin_delete{
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+  }

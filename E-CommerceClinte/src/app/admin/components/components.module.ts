@@ -6,6 +6,8 @@ import { DashboardsModule } from './dashboards/dashboards.module';
 import { CommonModule } from '@angular/common';
 import { AuthorizeMenuModule } from './authorize-menu/authorize-menu.module';
 import { RoleModule } from './role/role.module';
+import { UserModule } from './user/user.module';
+
 
 
 
@@ -20,7 +22,8 @@ import { RoleModule } from './role/role.module';
    OrdersModule,
    DashboardsModule,
    AuthorizeMenuModule,
-   RoleModule
+   RoleModule,
+   UserModule
 
   ]
 })
