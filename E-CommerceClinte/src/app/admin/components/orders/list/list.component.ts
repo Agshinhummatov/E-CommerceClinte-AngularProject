@@ -40,13 +40,16 @@ export class ListComponent extends BaseComponent implements OnInit {
 
   async getOrders() {
     this.showSpinner(SpinnerType.ballAtom);
-    const allOrders: { totalOrderCount: number; orders: List_Order[] } = await this.orderService.getAllOrders(this.paginator ? this.paginator.pageIndex : 0, this.paginator ? this.paginator.pageSize : 5, () => this.hideSpinner(SpinnerType.ballAtom), errorMessage =>
-      this.alertify.message(errorMessage, {
+    debugger;
+    const allOrders: { totalOrderCount: number; orders: List_Order[] } = await this.orderService.getAllOrders(this.paginator ? this.paginator.pageIndex : 0, this.paginator ? this.paginator.pageSize : 5, () => this.hideSpinner(SpinnerType.ballAtom),
+    (errorMessage: any) =>
+      this.alertify.message(errorMessage.message, {
         dismissOthers: true,
         messageType: MessageType.Error,
         position: Position.TopRight
+        
       }));
-
+      
     this.dataSource = new MatTableDataSource<List_Order>(allOrders.orders);
     this.paginator.length = allOrders.totalOrderCount;
 

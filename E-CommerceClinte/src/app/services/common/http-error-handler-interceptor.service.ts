@@ -22,7 +22,7 @@ export class HttpErrorHandlerInterceptorService implements HttpInterceptor {
 
 
         this.userAuthService.refreshTokenLogin(localStorage.getItem("refreshToken"), (state) => {
-          debugger;
+       
           if (!state) {
             const url = this.router.url;
             if (url == "/products")
@@ -37,6 +37,10 @@ export class HttpErrorHandlerInterceptorService implements HttpInterceptor {
               });
           }
         }).then(data => {
+          this.toastrService.message("You are not authorized to perform this action!", "Yetkisiz işlem!", {
+            messageType: ToastrMessageType.Warning,
+            position: ToastrPosition.BottomFullWidth
+          });
 
         });
         break;
